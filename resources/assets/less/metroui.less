@@ -1,0 +1,78 @@
+// Color variables (appears count calculates by raw css)
+@color0: #ffffff; // Appears 7 times
+@color1: #1d1d1d; // Appears 2 times
+@color2: #1ba1e2; // Appears 2 times
+
+
+.noty_theme__metroui.noty_bar
+{
+    box-shadow: rgba(0, 0, 0, 0.298039) 0 0 5px 0;
+    margin: 4px 0;
+    overflow: hidden;
+    position: relative;
+
+    .noty_progressbar
+    {
+        background-color: #000000;
+        bottom: 0;
+        filter: alpha(opacity=20);
+        height: 3px;
+        left: 0;
+        opacity: 0.2;
+        position: absolute;
+        width: 100%;
+    }
+
+    .noty_body
+    {
+        font-size: 14px;
+        padding: 1.25em;
+    }
+
+    .noty_buttons
+    {
+        padding: 0 10px 0.5em 10px;
+    }
+}
+
+.noty_theme__metroui.noty_type__alert
+{
+    background-color: @color0;
+    color: @color1;
+}
+
+.noty_theme__metroui.noty_type__notification
+{
+    background-color: @color0;
+    color: @color1;
+}
+
+.noty_theme__metroui.noty_type__warning
+{
+    background-color: #fa6800;
+    color: @color0;
+}
+
+.noty_theme__metroui.noty_type__error
+{
+    background-color: #ce352c;
+    color: @color0;
+}
+
+.noty_theme__metroui.noty_type__info
+{
+    background-color: @color2;
+    color: @color0;
+}
+
+.noty_theme__metroui.noty_type__information
+{
+    background-color: @color2;
+    color: @color0;
+}
+
+.noty_theme__metroui.noty_type__success
+{
+    background-color: #60a917;
+    color: @color0;
+}

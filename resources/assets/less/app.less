@@ -1,0 +1,2486 @@
+@font-face
+{
+    font-family: 'TT Milks';
+    src: url('../fonts/TTMilks-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face
+{
+    font-family: 'TT Milks';
+    src: url('../fonts/TTMilks-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face
+{
+    font-family: 'TT Milks';
+    src: url('../fonts/TTMilks-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face
+{
+    font-family: 'TT Milks';
+    src: url('../fonts/TTMilks-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face
+{
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face
+{
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face
+{
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@import 'noty';
+@import 'mint';
+@import 'metroui';
+
+@white: #fff;
+@black: #000;
+@gray: #B7BABC;
+@primary: #070a12;
+@primaryBlock: #0e1525;
+@secondary: #fcaf17;
+
+body, html
+{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    scroll-behavior: smooth;
+    font-family: 'Montserrat', sans-serif;
+    background-color: @primary;
+
+    .ActiveMenu
+    {
+        overflow-y: hidden;
+    }
+
+    ::-webkit-scrollbar
+    {
+        width: 12px;
+        height: 8px;
+        background-color: #f3f3f3;
+    }
+
+    ::-webkit-scrollbar-thumb
+    {
+        background-color: @secondary;
+    }
+
+    .container
+    {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+
+        @media screen and (max-width: 1300px)
+        {
+            width: auto;
+            padding: 0 30px;
+        }
+
+        @media screen and (max-width: 650px)
+        {
+            padding: 0 15px;
+        }
+
+        @media screen and (max-width: 425px)
+        {
+            padding: 0 10px;
+        }
+    }
+
+    .content
+    {
+        flex-grow: 1;
+    }
+
+    h1
+    {
+        font-size: 75px;
+        margin: 0;
+
+        @media (max-width: 920px)
+        {
+            font-size: 70px;
+        }
+        @media (max-width: 860px)
+        {
+            font-size: 55px;
+        }
+        @media (max-width: 700px)
+        {
+            font-size: 45px;
+        }
+        @media (max-width: 350px)
+        {
+            font-size: 40px;
+        }
+    }
+
+    h2
+    {
+        font-size: 28px;
+    }
+
+    h3
+    {
+        font-weight: 700;
+    }
+}
+
+header
+{
+    width: 100%;
+    font-family: 'TT Milks', sans-serif;
+    position: fixed;
+    user-select: none;
+    font-weight: 700;
+    z-index: 990;
+    background: linear-gradient(180deg, black, transparent);
+
+    .container
+    {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @media (max-width: 1300px)
+        {
+            width: auto;
+            padding: 0 20px;
+        }
+
+        .header
+        {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+
+            .header__menu
+            {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                margin-top: 10px;
+
+                @media (max-width: 1023px)
+                {
+                    position: fixed;
+                    z-index: 3;
+                    margin-top: 0;
+                    background: linear-gradient(180deg, black, transparent);
+                }
+
+                .logo
+                {
+                    display: flex;
+                    margin: auto 0;
+                    font-size: 34px;
+                    width: 20%;
+
+                    @media (max-width: 1023px)
+                    {
+                        padding: 0 20px;
+                        margin-top: 10px;
+                    }
+
+                    a
+                    {
+                        text-decoration: none;
+                        color: @white;
+                        display: flex;
+
+                    }
+                }
+
+                .hamburger
+                {
+                    display: none;
+
+                    @media (max-width: 1100px)
+                    {
+                        display: block;
+                        position: absolute;
+                        cursor: pointer;
+                        right: 4%;
+                        top: 60%;
+                        transform: translate(-5%, -50%);
+                        z-index: 2;
+                        transition: all 0.7s ease;
+                    }
+
+                    div
+                    {
+                        width: 30px;
+                        height: 3px;
+                        background: @white;
+                        margin: 5px;
+                        transition: all 0.3s ease;
+                    }
+                }
+
+
+                .header__menu-items
+                {
+                    padding: 0;
+                    margin: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 75%;
+
+                    @media (max-width: 1100px)
+                    {
+                        position: fixed;
+                        background: #101219;
+                        height: 100vh;
+                        width: 100%;
+                        margin: 0;
+                        flex-direction: column;
+                        justify-content: flex-start;
+                        clip-path: circle(50px at 90% -20%);
+                        transition: all 1s ease-out;
+                        pointer-events: none;
+                        display: flex;
+                        align-items: center;
+                        font-size: 33px;
+                        user-select: none;
+                        padding-top: 25px;
+                    }
+
+                    &.open
+                    {
+                        clip-path: circle(1000px at 40%-10%);
+                        pointer-events: all;
+                    }
+
+                    .menu-item
+                    {
+                        display: flex;
+                        justify-content: space-between;
+                        text-align: center;
+                        flex-direction: row;
+                        padding: 0;
+
+                        li
+                        {
+                            list-style: none;
+                            margin: auto;
+
+                            @media (max-width: 1100px)
+                            {
+                                margin: 1rem;
+                            }
+
+                            &.fade
+                            {
+                                opacity: 1;
+                            }
+
+                            a
+                            {
+                                text-decoration: none;
+                                text-transform: uppercase;
+                                font-size: 26px;
+                                color: @white;
+                                transition: background .3s ease, color .3s ease;
+                                padding: 0 10px;
+                                margin: 0 5px;
+                                border-radius: 15px;
+
+                                &:hover
+                                {
+                                    color: @black;
+                                    background-color: @white;
+                                    border-radius: 15px;
+                                }
+                            }
+                        }
+
+                        @media (max-width: 1100px)
+                        {
+                            flex-direction: column;
+                        }
+                    }
+
+                    .header-lang-switcher
+                    {
+                        margin: auto 0;
+                        padding: 0 15px;
+                        @media (max-width: 1100px)
+                        {
+                            margin: 1rem;
+                        }
+
+                        a
+                        {
+                            display: block;
+                            height: 31.5px;
+
+                            img
+                            {
+                                width: 42px;
+                                border-radius: 3px;
+                            }
+                        }
+                    }
+
+                    .header-menu-login
+                    {
+                        display: flex;
+                        order: 2;
+                        padding: 2px 16px;
+                        border: 1px solid @secondary;
+                        border-radius: 10px;
+                        transition: background .3s ease;
+
+                        &:hover
+                        {
+                            background-color: rgba(252, 175, 23, 0.3);
+                        }
+
+                        @media (max-width: 1023px)
+                        {
+                            margin-top: 10px;
+                        }
+
+                        a
+                        {
+                            display: flex;
+                            align-items: center;
+                            text-decoration: none;
+
+                            .login-title
+                            {
+                                font-size: 23px;
+                                color: @white;
+                            }
+
+                            .login-icon
+                            {
+                                mask-image: url('../images/svg/vk.svg');
+                                width: 31px;
+                                height: 18px;
+                                background-color: @white;
+                                margin-left: 10px;
+
+                            }
+                        }
+                    }
+
+                    .header-menu-profile
+                    {
+                        display: flex;
+                        align-items: center;
+
+                        img
+                        {
+                            width: 60px;
+                            height: 60px;
+                            border-radius: 100%;
+                        }
+
+                        .header-menu-profile-info
+                        {
+                            display: flex;
+                            flex-direction: column;
+                            margin-left: 10px;
+                            font-family: 'TT Milks', sans-serif;
+                            font-weight: 700;
+
+                            .header-menu-profile-name
+                            {
+                                text-decoration: underline;
+                                color: @white;
+                                margin-bottom: 3px;
+                                font-size: 18px;
+                            }
+
+                            .header-menu-profile-balance
+                            {
+                                font-size: 16px;
+                                text-decoration: none;
+                                color: @gray;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.scroll-down
+{
+    padding-top: 70px;
+
+    @media screen and (max-width: 1200px)
+    {
+        padding-bottom: 90px;
+    }
+
+    @media screen and (max-width: 860px)
+    {
+        padding-bottom: 150px;
+    }
+
+    img
+    {
+        animation: 2s infinite jumpScroll;
+    }
+}
+
+@keyframes jumpScroll
+{
+    0%
+    {
+        transform: translateY(0);
+    }
+    50%
+    {
+        transform: translateY(10px);
+    }
+    100%
+    {
+        transform: translateY(0);
+    }
+}
+
+.banner
+{
+    text-align: center;
+    position: relative;
+    padding: 130px 0;
+    background-size: cover;
+    user-select: none;
+    background: url('../images/home-bg.png') no-repeat center fixed;
+    background-size: cover;
+
+    @media screen and (max-width: 1225px)
+    {
+        padding: 100px 0;
+    }
+
+    .banner-image
+    {
+        position: relative;
+        margin: auto;
+
+
+        img
+        {
+            width: 100%;
+            max-width: 600px;
+            bottom: -29px;
+            position: relative;
+        }
+
+        .banner-title
+        {
+            font-family: 'TT Milks', sans-serif;
+            font-weight: 700;
+            color: @white;
+            position: absolute;
+            bottom: -20px;
+            margin: 0 auto;
+            width: 100%;
+        }
+    }
+
+    .banner-description
+    {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        background: @secondary;
+        padding: 15px 25px;
+        font-size: 18px;
+        margin-top: 25px;
+        box-shadow: 0 5px 10px -2px @secondary;
+
+        p
+        {
+            max-width: 1400px;
+            margin: auto;
+        }
+    }
+}
+
+.packages-list
+{
+    position: relative;
+    background: url('../images/playnow-bg.png') no-repeat center;
+    background-size: cover;
+    margin-top: -146px;
+    width: 100%;
+    user-select: none;
+    padding-bottom: 230px;
+    padding-top: 115px;
+
+    @media (max-width: 860px)
+    {
+        margin-top: -250px;
+    }
+
+    @media (max-width: 550px)
+    {
+        padding-bottom: 80px;
+    }
+
+    .package-title
+    {
+        font-family: 'TT Milks', sans-serif;
+        font-weight: 800;
+        color: @white;
+        width: 100%;
+        font-size: 75px;
+        text-align: center;
+        text-shadow: 0 0 5px @white;
+        text-transform: uppercase;
+        margin: 0 auto 30px;
+        padding-top: 90px;
+
+        @media(max-width: 425px)
+        {
+            font-size: 50px;
+        }
+    }
+
+    .package-container
+    {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 80%;
+        margin: 0 auto;
+
+        .package-item
+        {
+            display: flex;
+            flex: 0 1 300px;
+            margin: 10px;
+            position: relative;
+            transition: all 0.3s ease;
+            border-radius: 15px;
+
+            @media (max-width: 400px)
+            {
+                flex: 0 1 270px;
+            }
+
+            &:hover
+            {
+                .package-item-info, &:after
+                {
+                    opacity: 1;
+                    transition: all 0.4s ease;
+                }
+            }
+
+            &:after
+            {
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.3);
+                opacity: 0;
+                z-index: 5;
+                border-radius: 15px;
+            }
+
+            .package-item-info
+            {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                position: absolute;
+                z-index: 6;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                font-family: 'TT Milks', sans-serif;
+                font-weight: 800;
+                font-size: 25px;
+                color: @white;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+
+                .package-item-info-name
+                {
+                    font-size: 28px;
+                }
+
+                .package-item-info-price
+                {
+                    font-size: 26px;
+                }
+
+                .package-item-info-button
+                {
+                    background: rgba(252, 175, 23, .3);
+                    padding: 3px 15px;
+                    color: @white;
+                    font-size: 24px;
+                    text-decoration: none;
+                    transition: color .3s ease, background .3s ease;
+                    border-radius: 10px;
+                    border: 1px solid @secondary;
+
+                    &:hover
+                    {
+                        background: @secondary;
+                    }
+                }
+            }
+
+            img
+            {
+                width: 300px;
+                z-index: 2;
+                border-radius: 15px;
+
+                @media (max-width: 400px)
+                {
+                    width: 270px;
+                }
+            }
+
+            .dog
+            {
+                display: block;
+
+                .dog-body
+                {
+                    position: absolute;
+                    width: 215px;
+                    height: 231px;
+                    top: 190px;
+                    z-index: 1;
+                    left: 169px;
+                }
+
+                .dog-head
+                {
+                    position: absolute;
+                    width: 86px;
+                    height: 74px;
+                    top: 190px;
+                    left: 278px;
+                    z-index: 99;
+                }
+
+                @media (max-width: 550px)
+                {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.faq
+{
+    background: url('../images/tracery-bg.png') no-repeat fixed;
+    background-size: cover;
+    font-family: 'TT Milks', sans-serif;
+    flex-grow: 1;
+    user-select: none;
+    color: @white;
+
+    .container
+    {
+        padding: 120px 50px;
+
+        .how-order-package
+        {
+            background: @primaryBlock;
+            border-radius: 30px;
+            padding: 25px;
+            margin: 0 auto;
+
+            @media (max-width: 1075px)
+            {
+                width: 30%;
+            }
+
+            @media (max-width: 560px)
+            {
+                width: 40%;
+            }
+
+            @media (max-width: 360px)
+            {
+                width: 50%;
+            }
+
+            h1
+            {
+                font-size: 26px;
+                text-align: center;
+                color: @white;
+                font-weight: 600;
+                margin-bottom: 20px;
+            }
+
+            .how-order-package-steps
+            {
+                display: flex;
+                justify-content: center;
+                flex-wrap: nowrap;
+
+                @media (max-width: 1075px)
+                {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .how-order-package-step
+                {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 150px;
+
+                    .how-order-package-step-icon
+                    {
+                        display: flex;
+                        justify-content: center;
+                        position: relative;
+                        height: 150px;
+                        width: 100%;
+
+                        &:hover
+                        {
+                            &:before
+                            {
+                                box-shadow: 0 0 10px @secondary;
+                            }
+                        }
+
+                        &:before
+                        {
+                            position: absolute;
+                            content: '';
+                            top: 10px;
+                            left: 10px;
+                            right: 10px;
+                            bottom: 10px;
+                            border-radius: 100%;
+                            border: 1px solid @secondary;
+                            transition: box-shadow .3s ease;
+                        }
+
+                        img
+                        {
+                            width: 70px;
+                        }
+                    }
+
+                    .how-order-package-step-text
+                    {
+                        text-align: center;
+                        font-size: 16px;
+                        font-weight: 600;
+                        color: @white;
+                    }
+                }
+
+                .how-order-package-arrow
+                {
+                    margin: 60px 10px 0;
+
+                    @media (max-width: 1075px)
+                    {
+                        margin: 20px 0;
+                    }
+
+                    .how-order-package-arrow-icon
+                    {
+                        position: relative;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 35px;
+                        width: 35px;
+
+                        &:before
+                        {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            border-radius: 100%;
+                            border: 1px solid #808080;
+                        }
+
+                        img
+                        {
+                            height: 19px;
+                            position: absolute;
+                            right: 10px;
+
+                            @media (max-width: 1075px)
+                            {
+                                transform: rotate(90deg);
+                                position: unset;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .answer-question
+        {
+            margin-bottom: 20px;
+
+            h2
+            {
+                text-align: center;
+                font-size: 26px;
+                color: @white;
+                font-weight: 600;
+                margin: 30px 0 30px;
+            }
+
+            .answer-question-list
+            {
+                display: flex;
+                flex-direction: column;
+                font-family: 'TT Milks', sans-serif;
+
+                .answer-question-item
+                {
+                    background: @primaryBlock;
+                    border-radius: 30px;
+                    padding-left: 70px;
+                    position: relative;
+                    margin-top: 10px;
+
+                    &.active
+                    {
+                        &:after
+                        {
+                            transform: rotate(90deg);
+                        }
+                    }
+
+                    &:not(:first-child)
+                    {
+                        margin-top: 10px;
+                    }
+
+                    &:after
+                    {
+                        position: absolute;
+                        content: url('../images/svg/arrow.svg');
+                        right: 30px;
+                        top: 22px;
+                        transition: transform .3s ease;
+                    }
+
+                    .answer-question-item-icon
+                    {
+                        position: absolute;
+                        height: 30px;
+                        width: 30px;
+                        top: 17px;
+                        left: 20px;
+                        text-align: center;
+
+                        &:before
+                        {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            border: 1px solid @secondary;
+                            border-radius: 100%;
+                        }
+
+                        img
+                        {
+                            height: 29px;
+                        }
+                    }
+
+                    .answer-question-item-question
+                    {
+                        font-weight: 600;
+                        font-size: 22px;
+                        color: @white;
+                        padding: 20px 60px 20px 0;
+
+                        @media (max-width: 810px)
+                        {
+                            font-size: 20px;
+                        }
+
+                        @media (max-width: 740px)
+                        {
+                            font-size: 17px;
+                        }
+                    }
+
+                    .answer-question-item-answer
+                    {
+                        display: none;
+                        font-family: Montserrat, sans-serif;
+                        font-weight: 700;
+                        font-size: 14px;
+                        color: @secondary;
+                        padding-bottom: 20px;
+                        padding-right: 10px;
+
+                        @media (max-width: 810px)
+                        {
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.warranty
+{
+    background: url('../images/tracery-bg.png') no-repeat fixed;
+    background-size: cover;
+    font-family: 'TT Milks', sans-serif;
+    flex-grow: 1;
+    padding-top: 80px;
+    text-align: center;
+    user-select: none;
+    color: @white;
+
+    .container
+    {
+
+        .about-description
+        {
+            max-width: 1000px;
+            padding-top: 50px;
+            margin: auto;
+
+            h1
+            {
+                font-size: 26px;
+                margin: 0;
+            }
+
+            h3
+            {
+                font-size: 18px;
+                font-family: Montserrat, sans-serif;
+                padding: 20px 0;
+                margin: 0;
+            }
+        }
+
+        .info-warranty
+        {
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;
+            flex-wrap: wrap;
+            padding: 15px 0 30px 0;
+            margin-top: 50px;
+            background-color: @primaryBlock;
+            border-radius: 30px;
+
+            .info
+            {
+                display: flex;
+                flex-direction: column;
+                transition: text-shadow 0.2s ease;
+                padding: 0 10px;
+
+                &:hover
+                {
+                    text-shadow: @secondary 0 0 8px;
+                }
+
+                .title
+                {
+                    display: flex;
+
+                    .icon
+                    {
+                        transition: all 0.3s;
+                        background: linear-gradient(0deg, @secondary 0%, #00B699 100%);
+                        margin: auto 20px auto 0;
+                    }
+
+                    #price
+                    {
+                        mask-image: url('../images/svg/price.svg');
+                        width: 31px;
+                        height: 35px;
+                    }
+
+                    #bonus
+                    {
+                        mask-image: url('../images/svg/bonus.svg');
+                        width: 33px;
+                        height: 31px;
+                    }
+
+                    #stability
+                    {
+                        mask-image: url('../images/svg/stability.svg');
+                        width: 33px;
+                        height: 33px;
+                    }
+
+                    #choice
+                    {
+                        mask-image: url('../images/svg/choice.svg');
+                        width: 32px;
+                        height: 32px;
+                    }
+
+
+                    h3
+                    {
+                        color: @secondary;
+
+                    }
+                }
+
+                .description
+                {
+                    max-width: 220px;
+                    text-align: left;
+                    font-family: Montserrat, sans-serif;
+                    font-size: 14px;
+                    text-shadow: 0 0 black;
+                }
+
+            }
+
+        }
+
+    }
+
+    .personality
+    {
+        display: flex;
+        justify-content: space-between;
+
+
+        .container
+        {
+
+            .personality-discount
+            {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                padding-top: 50px;
+
+                .price-icon
+                {
+                    width: 42px;
+                    height: 42px;
+                    transition: all 0.3s;
+                    background: linear-gradient(0deg, @secondary 0%, #00B699 100%);
+                    mask-image: url('../images/svg/discount.svg');
+                    margin: auto;
+                }
+
+                .personality-discount-description
+                {
+                    margin: auto;
+                    font-family: Montserrat, sans-serif;
+                }
+            }
+        }
+    }
+
+    .payment
+    {
+        margin-top: 40px;
+        padding-bottom: 50px;
+
+        .container
+        {
+
+            .payment-title
+            {
+                padding-top: 10px;
+            }
+
+            .payment-method
+            {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                padding: 40px 20px 0 20px;
+                flex-wrap: wrap;
+                background-color: #0B101F;
+                border-radius: 30px;
+
+                @media (max-width: 890px)
+                {
+                    justify-content: center;
+                    width: 460px;
+                    margin: auto;
+                }
+
+                @media (max-width: 550px)
+                {
+                    justify-content: center;
+                    width: 320px;
+                    margin: auto;
+                }
+
+                @media (max-width: 400px)
+                {
+                    justify-content: center;
+                    width: 190px;
+                    margin: auto;
+                    padding: 40px 0 0 20px;
+                }
+
+                .payment-item
+                {
+                    padding: 0 0 40px 0;
+                    margin: auto 0;
+
+                    .payment-icon
+                    {
+                        transition: all 0.3s;
+                        @media (max-width: 400px)
+                        {
+                            margin-right: 18px;
+                        }
+                    }
+                }
+
+                .line
+                {
+                    border-right: 2px solid @white;
+                    border-radius: 10px;
+                    max-height: 60px;
+                    margin: 15px 20px;
+                    display: block;
+
+                    @media (max-width: 400px)
+                    {
+                        display: none;
+                    }
+                }
+
+                #line
+                {
+                    @media (max-width: 890px)
+                    {
+                        display: none;
+                    }
+
+                    @media (max-width: 550px)
+                    {
+                        display: block;
+                    }
+                }
+
+                #webmoney
+                {
+                    width: 75px;
+                    height: 73px;
+                    mask-image: url('../images/svg/webmoney.svg');
+                    background: #006ab4;
+                }
+
+                #qiwi
+                {
+                    width: 79px;
+                    height: 82px;
+                    mask-image: url('../images/svg/qiwi.svg');
+                    background: #f59c00;
+                }
+
+                #yandexmoney
+                {
+                    width: 61px;
+                    height: 60px;
+                    background-image: url('../images/yandexmoney.png');
+                }
+
+                #bitcoin
+                {
+                    width: 78px;
+                    height: 78px;
+                    background-image: url('../images/bitcoin.png');
+                }
+
+                #visa
+                {
+                    width: 166px;
+                    height: 54px;
+                    mask-image: url('../images/svg/visa.svg');
+                    background: linear-gradient(90deg, #202364 0%, #215da1 100%);
+                }
+
+                #mastercard
+                {
+                    width: 98px;
+                    height: 76px;
+                    background-image: url('../images/mastercard.png');
+                    @media (max-width: 400px)
+                    {
+                        margin: 0;
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+.package
+{
+    background: url('../images/tracery-colors-bg.png') no-repeat fixed;
+    background-size: cover;
+    font-family: 'TT Milks', sans-serif;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 200px;
+
+    @media (max-width: 999px)
+    {
+        padding-top: 80px;
+    }
+
+    .container
+    {
+
+        .package-about
+        {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            max-width: 950px;
+            flex-wrap: wrap;
+            margin: auto;
+
+
+            .package-images
+            {
+                margin: 0 auto;
+
+                @media (max-width: 984px)
+                {
+                    padding: 0 40px 15px 40px;
+                }
+
+                @media (max-width: 768px)
+                {
+                    padding: 0 0 15px 0;
+                }
+
+                img
+                {
+                    border-radius: 20px;
+                    width: 300px;
+                }
+            }
+
+            .package-data
+            {
+                padding-left: 40px;
+                margin: 0 auto;
+                min-width: 550px;
+
+                @media (max-width: 984px)
+                {
+                    padding: 0;
+                }
+
+                @media (max-width: 650px)
+                {
+                    padding: 0;
+                    min-width: calc(100vw - 30px);
+                }
+
+                h1
+                {
+                    text-align: center;
+                    color: @white;
+                    text-shadow: 0 0 10px @white;
+                    font-size: 28px;
+                }
+
+                .package-description
+                {
+                    font-size: 16px;
+                    font-weight: 700;
+                    color: @white;
+                    padding-top: 20px;
+
+                    .package-menu
+                    {
+                        display: flex;
+                        width: calc(100% - 33px);
+                        margin: auto;
+
+                        .description
+                        {
+                            box-sizing: border-box;
+                            border-radius: 20px 20px 0 0;
+                            padding: 10px 20px;
+                            border: 1px solid #fcaf1700;
+                            border-bottom-style: none;
+                            font-family: 'TT Milks', sans-serif;
+                            display: flex;
+                            align-items: center;
+
+                            &.active
+                            {
+                                background: @primaryBlock;
+                                border: 1px solid #FCAF17;
+                                border-bottom-style: none;
+                            }
+
+                        }
+
+                        .boost-info
+                        {
+                            box-sizing: border-box;
+                            border-radius: 20px 20px 0 0;
+                            padding: 10px 20px;
+                            border: 1px solid #fcaf1700;
+                            border-bottom-style: none;
+                            font-family: 'TT Milks', sans-serif;
+                            display: flex;
+                            align-items: center;
+                            text-align: center;
+
+                            &.active
+                            {
+                                background: @primaryBlock;
+                                border: 1px solid #FCAF17;
+                                border-bottom-style: none;
+                            }
+                        }
+                    }
+
+                    ::-webkit-scrollbar {
+                        width: 0;
+                        background: transparent;
+                    }
+
+                    .package-info
+                    {
+                        background: @primaryBlock;
+                        border: 1px solid #fcaf17;
+                        box-sizing: border-box;
+                        border-radius: 20px;
+                        padding: 15px 20px;
+                        max-width: 550px;
+                        min-width: 220px;
+                        max-height: 220px;
+                        overflow: auto;
+
+
+                        .package-info-item
+                        {
+                            display: none;
+
+                            &.active
+                            {
+                                font-size: 20px;
+                                font-family: 'Montserrat', sans-serif;
+                                margin-bottom: 7px;
+                                display: flex;
+                            }
+
+                            .number-circle
+                            {
+                                border: 1px solid @white;
+                                border-radius: 100%;
+                                margin-right: 10px;
+                                max-height: 26px;
+                                max-width: 26px;
+                                height: 100%;
+                                width: 100%;
+
+                                .number
+                                {
+                                    display: flex;
+                                    justify-content: center;
+                                }
+                            }
+
+                            .info
+                            {
+                                margin: auto 0;
+                            }
+                        }
+
+                        .package-info-description
+                        {
+                            display: none;
+
+                            &.active
+                            {
+                                font-size: 20px;
+                                font-family: 'Montserrat', sans-serif;
+                                margin-bottom: 7px;
+                                display: flex;
+                            }
+
+                            .number-circle
+                            {
+                                border: 1px solid @white;
+                                border-radius: 100%;
+                                margin-right: 10px;
+                                max-height: 26px;
+                                max-width: 26px;
+                                height: 100%;
+                                width: 100%;
+
+                                .number
+                                {
+                                    display: flex;
+                                    justify-content: center;
+                                }
+                            }
+
+                            .info
+                            {
+                                margin: auto 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .package-order
+        {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding-bottom: 50px;
+            flex-wrap: wrap;
+            max-width: 914px;
+            margin: auto;
+
+            @media (max-width: 984px)
+            {
+                max-width: 265px;
+                flex-direction: row-reverse;
+                justify-content: center;
+            }
+
+        }
+
+        .boost
+        {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            padding-bottom: 15px;
+            color: @white;
+            display: flex;
+
+            @media (max-width: 984px)
+            {
+                margin: auto;
+            }
+
+            .boost-platforms
+            {
+                padding-right: 10px;
+
+                .boost-platforms-title
+                {
+                }
+
+                .boost-platforms-description
+                {
+                    font-weight: 600;
+                }
+            }
+
+            .boost-service
+            {
+
+                .boost-service-title
+                {
+                    padding-right: 36px;
+                }
+
+                .boost-service-description
+                {
+                    font-weight: 600;
+                }
+            }
+        }
+
+        .package-price
+        {
+            display: flex;
+            flex-direction: row;
+            font-weight: 700;
+            font-size: 24px;
+
+            .price
+            {
+                color: @white;
+                padding-right: 15px;
+            }
+
+            .old-price
+            {
+                text-decoration: line-through;
+                color: #808080;
+                padding-right: 15px;
+            }
+
+            .buy
+            {
+                font-family: 'TT Milks', sans-serif;
+                font-weight: bolder;
+                color: @white;
+                font-size: 22px;
+                text-align: center;
+                width: 103px;
+                height: 30px;
+                background: rgba(252, 175, 23, 0.3);
+                border: 1px solid #FCAF17;
+                box-sizing: border-box;
+                border-radius: 5px;
+                transition: all 0.2s ease;
+
+                &:hover
+                {
+                    background: @secondary
+                }
+            }
+        }
+    }
+}
+
+.agreement
+{
+    background: url('../images/tracery-colors-bg.png') no-repeat fixed;
+    background-size: cover;
+    padding: 100px 0 50px;
+    color: @white;
+
+
+    .agreement-title
+    {
+        font-size: 25px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .agreement-description
+    {
+        font-size: 16px;
+    }
+
+    .agreement-name
+    {
+        font-size: 18px;
+    }
+
+    .agreement-first
+    {
+        margin: 0 0 0 20px;
+    }
+
+    .agreement-second
+    {
+        margin: 5px 0 5px 50px;
+    }
+}
+
+.reviews
+{
+    background: url('    ../images/tracery-bg.png') no-repeat fixed;
+    background-size: cover;
+    font-family: 'Montserrat', sans-serif;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 100px;
+    text-align: center;
+    color: @white;
+
+    h2
+    {
+        font-size: 16px;
+    }
+
+    .container
+    {
+        .reviews-title
+        {
+            font-family: 'TT Milks', sans-serif;
+
+            h2
+            {
+                font-size: 26px;
+            }
+        }
+
+        a
+        {
+            text-decoration: none;
+            color: @white;
+            transition: .2s all ease;
+
+            .banner-vk
+            {
+
+                max-width: 800px;
+                width: 100%;
+                margin: 0 auto;
+                text-align: center;
+                font-family: 'TT Milks', sans-serif;
+
+                h2
+                {
+                    font-size: 26px;
+                    padding: 21px;
+                    background-color: #0e1525;
+                    border-radius: 30px;
+                }
+            }
+
+            &:hover
+            {
+                color: #FCAF17;
+            }
+        }
+
+    }
+
+}
+
+
+.profile
+{
+    font-family: 'TT Milks', sans-serif;
+    background: url('../images/tracery-colors-bg.png') no-repeat fixed;
+    background-size: cover;
+    padding: 120px 0 100px;
+    user-select: none;
+
+    .container
+    {
+        .profile-wrapper
+        {
+            display: flex;
+
+            @media (max-width: 860px)
+            {
+                flex-direction: column;
+            }
+
+            .profile-wrapper-control
+            {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 30%;
+                background: #0e1525;
+                border-radius: 30px 0 0 30px;
+                padding: 50px 15px;
+
+                @media (max-width: 860px)
+                {
+                    width: 60%;
+                    margin: 0 auto;
+                    border-radius: 30px 30px 0 0;
+                }
+
+                @media (max-width: 470px)
+                {
+                    width: 80%;
+                }
+
+                .profile-info
+                {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    .profile-admin
+                    {
+                        color: @white;
+                        font-weight: 700;
+                        font-size: 22px;
+                    }
+
+                    .profile-photo
+                    {
+                        border-radius: 100%;
+                        width: 100px;
+                    }
+
+                    .profile-name
+                    {
+                        color: @white;
+                        font-weight: 500;
+                        font-size: 22px;
+                        margin: 5px 0;
+
+                        a
+                        {
+                            margin-left: 10px;
+
+                            img
+                            {
+                                vertical-align: middle;
+                            }
+                        }
+                    }
+
+                    .profile-balance
+                    {
+                        color: @white;
+                        font-weight: 700;
+                        font-size: 22px;
+                    }
+
+                    .profile-refill-button
+                    {
+                        color: @white;
+                        font-weight: 700;
+                        padding: 4px 10px;
+                        background: rgba(252, 175, 23, 0.3);
+                        border: 1px solid #FCAF17;
+                        border-radius: 10px;
+                        transition: background 0.3s ease;
+                        margin: 7px auto auto;
+                        text-align: center;
+
+                        &:hover
+                        {
+                            background: rgb(252, 175, 23);
+                        }
+                    }
+                }
+
+                .profile-tabs
+                {
+                    margin: 50px 0;
+                    scroll-behavior: smooth;
+
+                    .profile-tab
+                    {
+                        color: @white;
+                        font-size: 22px;
+                        font-weight: 700;
+
+
+                        img
+                        {
+                            margin-right: 10px;
+
+                            @media (max-width: 470px)
+                            {
+                                width: 40px;
+                            }
+                        }
+
+                        &:not(:last-child)
+                        {
+                            margin-bottom: 15px;
+                        }
+
+                    }
+
+                    .profile-tab-orders, .profile-tab-replenishment, .profile-tab-promoCode
+                    {
+                        display: flex;
+                        align-items: center;
+                        color: @white;
+                        transition: color 0.3s ease;
+                        text-decoration: none;
+
+                        &.active
+                        {
+                            color: #FCAF17;
+                        }
+                    }
+                }
+
+                .profile-vkontakte
+                {
+                    background: #4A76A8;
+                    text-align: center;
+                    padding: 20px 30px;
+                    border-radius: 20px;
+                    max-width: 150px;
+
+                    a
+                    {
+                        font-weight: 700;
+                        font-size: 22px;
+                        color: @white;
+
+                        @media (max-width: 560px)
+                        {
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
+
+            .profile-wrapper-info
+            {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 70%;
+                background: @primary;
+                border-radius: 0 30px 30px 0;
+                padding: 30px 15px;
+
+                @media (max-width: 860px)
+                {
+                    width: 60%;
+                    margin: 0 auto;
+                    border-radius: 0 0 30px 30px;
+                }
+
+                @media (max-width: 470px)
+                {
+                    width: 80%;
+                }
+
+                .alert
+                {
+                    background: #0e1525;
+                    padding: 10px 15px;
+                    color: @white;
+                    font-size: 18px;
+                    margin-bottom: 20px;
+                    border-radius: 10px;
+
+                    &.alert-success
+                    {
+                        background: #005937 !important;
+                    }
+
+                    &.alert-error
+                    {
+                        background: #790b00 !important;
+                    }
+                }
+
+                .profile-wrapper-info-orders, .profile-wrapper-info-promoCode, .profile-wrapper-info-replenishment
+                {
+                    font-weight: 700;
+                    font-size: 28px;
+                    color: @white;
+                    display: none;
+
+                    @media (max-width: 560px)
+                    {
+                        font-size: 24px;
+                    }
+
+                    &.active
+                    {
+                        display: block;
+                    }
+                }
+
+                .profile-orders
+                {
+                    margin: 50px 0;
+                    display: none;
+
+                    .profile-orders-list
+                    {
+
+                        .profile-orders-item
+                        {
+                            display: flex;
+
+                            &:not(:last-child)
+                            {
+                                margin-bottom: 10px;
+                            }
+
+                            .profile-orders-item-image
+                            {
+                                width: 85px;
+                                border-radius: 15px;
+
+                                @media (max-width: 560px)
+                                {
+                                    width: 60px;
+                                }
+                            }
+
+                            .profile-orders-item-info
+                            {
+                                margin-left: 14px;
+
+                                .profile-orders-item-name
+                                {
+                                    font-weight: 700;
+                                    font-size: 22px;
+                                    color: @white;
+
+                                    @media (max-width: 560px)
+                                    {
+                                        font-size: 18px;
+                                    }
+                                }
+
+                                .profile-orders-item-order_id
+                                {
+                                    font-weight: 700;
+                                    font-size: 16px;
+                                    color: #dad4d4;
+
+                                    @media (max-width: 560px)
+                                    {
+                                        font-size: 12px;
+                                    }
+                                }
+
+                                .profile-orders-item-price
+                                {
+                                    font-family: 'Montserrat', sans-serif;
+                                    font-weight: 600;
+                                    font-size: 16px;
+                                    color: @secondary;
+                                    margin: 4px 0;
+
+                                    @media (max-width: 560px)
+                                    {
+                                        font-size: 12px;
+                                        margin: 2px 0;
+                                    }
+                                }
+
+                                .profile-orders-item-date
+                                {
+                                    font-weight: 700;
+                                    font-size: 16px;
+                                    color: #dad4d4;
+
+                                    @media (max-width: 560px)
+                                    {
+                                        font-size: 12px;
+                                    }
+                                }
+                            }
+                        }
+
+                        .profile-orders-item-empty
+                        {
+                            color: @white;
+                            font-size: 30px;
+                            text-align: center;
+
+                            @media (max-width: 670px)
+                            {
+                                font-size: 30px;
+                            }
+                        }
+                    }
+
+                    &.active
+                    {
+                        display: block;
+                    }
+                }
+
+                .profile-replenishment
+                {
+                    margin: 20px 0;
+                    display: none;
+
+                    .table-wrap
+                    {
+                        text-align: center;
+                        display: inline-block;
+                        color: @black;
+                        width: 100%;
+
+                        table
+                        {
+                            border: 3px solid #ccc;
+                            width: 100%;
+                            margin: 0;
+                            padding: 0;
+                            border-spacing: 0;
+                            border-radius: 10px;
+
+                            th, td
+                            {
+                                padding: 10px;
+                                text-align: center;
+                                border-right: 2px solid #ccc;
+                                color: @white;
+
+                                &:last-child
+                                {
+                                    border-right: 0;
+                                }
+                            }
+
+                            th
+                            {
+                                color: @black;
+                                background-color: #FCAF17;
+                                text-transform: uppercase;
+                                font-size: 14px;
+                                letter-spacing: 1px;
+
+                                &:first-child
+                                {
+                                    border-radius: 6px 0 0 0;
+                                }
+
+                                &:last-child
+                                {
+                                    border-radius: 0 6px 0 0;
+                                }
+
+                                @media (max-width: 450px)
+                                {
+                                    font-size: 10px;
+                                }
+                            }
+
+                            td
+                            {
+                                border-top: 2px solid #ccc;
+                            }
+
+                            tr
+                            {
+                                border: 1px solid #ccc;
+                                padding: 5px;
+                            }
+
+                        }
+                    }
+
+                    &.active
+                    {
+                        display: block;
+                    }
+                }
+
+                .profile-promoCode
+                {
+                    display: none;
+
+                    .deficient-money
+                    {
+                        color: @white;
+                        text-align: center;
+                        margin: 20px 0;
+
+                        input[type='submit']
+                        {
+                            border: none;
+                            padding: 5px 20px;
+                            border-radius: 5px;
+                            font-size: 30px;
+                            background: #FCAF17;
+                            color: @white;
+                            font-family: 'TT Milks', sans-serif;
+                            font-weight: 800;
+                            outline: none;
+                        }
+
+                        input[type='text']
+                        {
+                            border: none;
+                            padding: 5px;
+                            border-radius: 5px;
+                            width: 176px;
+                            font-size: 30px;
+                            font-family: 'TT Milks', sans-serif;
+                            font-weight: 800;
+                            transition: 0.2s all ease;
+                            outline: none;
+                            margin-bottom: 15px;
+                            text-transform: uppercase;
+                            text-align: center;
+                        }
+                    }
+
+                    &.active
+                    {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+footer
+{
+    font-family: 'Open Sans', sans-serif;
+    flex-shrink: 0;
+    background: @primary;
+    padding: 10px 0;
+
+
+    .container-footer
+    {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1150px;
+        margin: 0 auto;
+
+        @media (max-width: 1260px)
+        {
+            margin: 0 20px;
+        }
+
+        @media (max-width: 860px)
+        {
+            justify-content: center;
+        }
+
+        .footer-links
+        {
+            display: flex;
+            align-items: center;
+            font-family: 'TT Milks', sans-serif;
+
+            @media (max-width: 860px)
+            {
+                flex-direction: column;
+                align-items: center;
+                margin: 0;
+            }
+
+            a
+            {
+                text-decoration: none;
+                font-size: 22px;
+                font-weight: 700;
+                color: @white;
+                transition: opacity .2s ease;
+
+                @media (max-width: 560px)
+                {
+                    font-size: 18px;
+                }
+
+                @media (max-width: 430px)
+                {
+                    font-size: 14px;
+                }
+
+                &:first-child
+                {
+                    margin-right: 50px;
+
+                    @media (max-width: 860px)
+                    {
+                        margin-right: 0;
+                    }
+                }
+
+
+                &:hover
+                {
+                    opacity: .7;
+                }
+            }
+        }
+
+
+        .footer-social-links
+        {
+            display: flex;
+            user-select: none;
+
+            @media (max-width: 1000px)
+            {
+                display: none;
+            }
+
+            .footer-social-link-inst, .footer-social-link-vk, .footer-social-link-telegram
+            {
+                transition: all 0.3s;
+                background-color: @white;
+                mask-repeat: no-repeat;
+                margin: auto 10px auto 0;
+
+                &:hover
+                {
+                    background-color: @secondary;
+                }
+            }
+
+            .footer-social-link-inst
+            {
+                mask-image: url('../images/svg/instagram.svg');
+                width: 26px;
+                height: 26px;
+            }
+
+            .footer-social-link-telegram
+            {
+                mask-image: url('../images/svg/telegram.svg');
+                width: 26px;
+                height: 26px;
+            }
+
+            .footer-social-link-vk
+            {
+                mask-image: url('../images/svg/vk.svg');
+                width: 31px;
+                height: 18px;
+            }
+        }
+    }
+}
+
+.popup-message
+{
+    display: none;
+    overflow: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    .menu
+    {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: flex-end;
+        font-family: 'TT Milks', sans-serif;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        background: rgba(0, 0, 0, 0.9);
+
+
+        .menu-mobile-close
+        {
+            order: 1;
+            margin-top: 40px;
+            width: 65px;
+        }
+    }
+
+    .popup-login
+    {
+        position: fixed;
+        background: #0e1525;
+        color: @white;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 20px;
+        border: 2px solid #FCAF17;
+        padding: 10px 50px;
+        text-align: center;
+        display: none;
+
+        a
+        {
+            text-decoration: none;
+            color: black;
+
+
+            .banner-vk
+            {
+                width: 100%;
+                margin: 0 auto;
+                text-align: center;
+                font-family: 'TT Milks', sans-serif;
+                transition: .2s all ease;
+
+                h2
+                {
+                    font-size: 26px;
+                    padding: 21px;
+                    background-color: #FCAF17;
+                    border-radius: 5px;
+                }
+
+                &:hover
+                {
+                    color: @white;
+                }
+            }
+        }
+    }
+
+    .popup-deficient--money
+    {
+        position: fixed;
+        background: #0e1525;
+        color: @white;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 20px;
+        border: 2px solid #FCAF17;
+        padding: 10px 50px 30px 50px;
+        text-align: center;
+        margin: 0 10px;
+        display: none;
+
+        .money::-webkit-inner-spin-button
+        {
+            display: none;
+        }
+
+        input[type='button']
+        {
+            border: none;
+            padding: 5px 20px;
+            border-radius: 5px;
+            font-size: 30px;
+            background: #FCAF17;
+            color: @white;
+            font-family: 'TT Milks', sans-serif;
+            font-weight: 800;
+            outline: none;
+        }
+
+        input[type='number']
+        {
+            border: none;
+            padding: 5px;
+            border-radius: 5px;
+            width: 176px;
+            font-size: 30px;
+            font-family: 'TT Milks', sans-serif;
+            font-weight: 800;
+            transition: 0.2s all ease;
+            outline: none;
+            text-align: right;
+            margin-bottom: 15px;
+        }
+
+    }
+
+    .popup-email--wish
+    {
+        position: fixed;
+        background: #0e1525;
+        color: @white;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 20px;
+        border: 2px solid #FCAF17;
+        padding: 10px 50px 30px 50px;
+        margin: 0 10px;
+        text-align: center;
+        display: none;
+
+        .money::-webkit-inner-spin-button
+        {
+            display: none;
+        }
+
+        input[type='button']
+        {
+            border: none;
+            padding: 5px 20px;
+            border-radius: 5px;
+            font-size: 30px;
+            background: #FCAF17;
+            color: @white;
+            font-family: 'TT Milks', sans-serif;
+            font-weight: 800;
+            outline: none;
+        }
+
+        input[type='email']
+        {
+            border: none;
+            padding: 5px;
+            border-radius: 7px;
+            max-width: 351px;
+            width: 92%;
+            font-size: 20px;
+            font-family: 'TT Milks', sans-serif;
+            font-weight: 800;
+            transition: 0.2s all ease;
+            outline: none;
+        }
+
+        textarea
+        {
+            border: none;
+            padding: 7px;
+            border-radius: 5px;
+            font-size: 20px;
+            font-family: 'TT Milks', sans-serif;
+            font-weight: 800;
+            outline: none;
+            max-width: 347px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .close-popup
+        {
+            content: url('../images/svg/closepopup.svg');
+            width: 15px;
+            height: 15px;
+            margin: auto 0 auto 10px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    }
+
+}
